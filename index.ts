@@ -14,14 +14,17 @@ const changedFilesContents = process.env.CHANGED_FILES_CONTENTS;
 
 interface Info {
     tier: Tier;
+    problemTitle: string;
     problemUrl: string;
 }
 
 function extractInfo(text: string) {
     let match = text.match(/\[(.*?)\]/); // 정규 표현식, []안의 문자열 뽑아냄
+    let problem = text.split(' ');
     let result: Info = {
         tier: match ? getTier(match[1]) : { name: '오류', icon: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_X.svg' },
-        problemUrl: text.split(' ')[1] || 'https://www.acmicpc.net/'
+        problemTitle: problem[2],
+        problemUrl: problem[1] || 'https://www.acmicpc.net/'
     }
     return result;
 }
@@ -58,7 +61,7 @@ async function addItem(databaseId: string) {
             properties: {
                 "문제": {
                     type: "title",
-                    title: [{ type: "text", text: { content: "문제번호 작성" } }],
+                    title: [{ type: "text", text: { content: info.problemTitle } }],
                 },
                 "날짜": {
                     type: "date",
