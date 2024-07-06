@@ -23,8 +23,8 @@ function extractInfo(text: string) {
     let problem = text.split(' ');
     let result: Info = {
         tier: match ? getTier(match[1]) : { name: '오류', icon: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_X.svg' },
-        problemTitle: problem[2],
-        problemUrl: problem[1] || 'https://www.acmicpc.net/'
+        problemTitle: problem[1],
+        problemUrl: problem[2] || 'https://www.acmicpc.net/'
     }
     return result;
 }
