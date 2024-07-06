@@ -1,0 +1,43 @@
+name: Add Notion Page on Push
+
+on:
+  push:
+    branches:
+      - solving
+
+jobs:
+  add-notion-page:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.18.0'  # 원하는 Node.js 버전을 지정하세요
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Get changed files and their contents
+        id: get-files
+        run: |
+          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} > changed_files.txt
+          while IFS= read -r file; do
+            echo "File: $file"
+            echo "-----"
+            cat "$file"
+            echo ""
+            echo "-----"
+          done < changed_files.txt > changed_files_contents.txt
+          echo "CHANGED_FILES_CONTENTS=$(cat changed_files_contents.txt)" >> $GITHUB_ENV
+
+      - name: Run script to add page to Notion
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          CHANGED_FILES_CONTENTS: ${{ env.CHANGED_FILES_CONTENTS }}
+        run: node index.js

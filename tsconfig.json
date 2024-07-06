@@ -1,0 +1,11 @@
+{
+    "ts-node": {
+        "esm": true,
+    },
+    "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "module": "ES2015",
+        "moduleResolution": "Node"
+    },
+    "include": ["getTier.ts",]
+}
