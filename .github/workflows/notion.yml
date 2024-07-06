@@ -40,4 +40,4 @@ jobs:
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           CHANGED_FILES_CONTENTS: ${{ env.CHANGED_FILES_CONTENTS }}
-        run: node index.js
+        run: ts-node index.ts
