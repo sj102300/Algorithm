@@ -6,11 +6,11 @@ config();
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.DATABASE_ID;
-// const commitMessage = process.env.COMMIT_MESSAGE;
-// const changedFilesContents = process.env.CHANGED_FILES_CONTENTS;
+const commitMessage = process.env.COMMIT_MESSAGE;
+const changedFilesContents = process.env.CHANGED_FILES_CONTENTS;
 
-const commitMessage = "[Bronze3] https://www.acmicpc.net/problem/2178";
-const changedFilesContents = "const a=b;"
+// const commitMessage = "[Bronze3] https://www.acmicpc.net/problem/2178";
+// const changedFilesContents = "const a=b;"
 
 interface Info {
     tier: Tier;
@@ -30,6 +30,16 @@ function extractInfo(text: string) {
 async function addItem(databaseId: string) {
 
     let today: string = new Date().toISOString();
+    if (!commitMessage){
+        console.log('커밋 메시지를 읽을 수 없습니다!');
+        console.log(commitMessage);
+        return;
+    }
+    if (!changedFilesContents){
+        console.log('파일 내용을 읽을 수 없습니다!');
+        console.log(changedFilesContents);
+        return;
+    }
     let info: Info = extractInfo(commitMessage)
 
     if (info) {
