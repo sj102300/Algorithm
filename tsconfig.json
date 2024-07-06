@@ -4,6 +4,7 @@
     },
     "compilerOptions": {
         "allowImportingTsExtensions": true,
+        "noEmit": true,        
         "module": "ES2015",
         "moduleResolution": "Node"
     },
