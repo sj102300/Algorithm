@@ -34,10 +34,11 @@ jobs:
           done < changed_files.txt > changed_files_contents.txt
           echo "CHANGED_FILES_CONTENTS=$(cat changed_files_contents.txt)" >> $GITHUB_ENV
 
+
       - name: Run script to add page to Notion
+        run: npx ts-node index.ts
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          CHANGED_FILES_CONTENTS: ${{ env.CHANGED_FILES_CONTENTS }}
-        run: ts-node index.ts
+          CHANGED_FILES_CONTENTS: ${{ github.event.head_commit.message }}
