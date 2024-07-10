@@ -33,9 +33,14 @@ function extractInfo(text: string) {
 async function addItem(databaseId: string) {
 
     let today: string = new Date().toISOString();
+
     if (!commitMessage){
         console.log('커밋 메시지를 읽을 수 없습니다!');
         console.log(commitMessage);
+        return;
+    }
+    if (commitMessage[0] !== "["){
+        console.log('노션 페이지 생성 관련 커밋이 아닙니다.');
         return;
     }
     if (!changedFilesContents){
