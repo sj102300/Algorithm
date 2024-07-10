@@ -24,15 +24,16 @@ jobs:
       - name: Get changed files and their contents
         id: get-files
         run: |
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} > changed_files.txt
-          while IFS= read -r file; do
-            echo "File: $file"
-            echo "-----"
-            cat "$file"
-            echo ""
-            echo "-----"
-          done < changed_files.txt > changed_files_contents.txt
-          echo "CHANGED_FILES_CONTENTS=$(cat changed_files_contents.txt)" >> $GITHUB_ENV
+          CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          # Read contents of the changed files
+          CHANGED_FILES_CONTENTS=""
+          for file in $CHANGED_FILES; do
+            CONTENTS=$(cat $file)
+            CHANGED_FILES_CONTENTS="${CHANGED_FILES_CONTENTS}\n\n${CONTENTS}"
+          done
+          # Save contents to environment variable
+          echo "CHANGED_FILES_CONTENTS=${CHANGED_FILES_CONTENTS}" >> $GITHUB_ENV
+
 
 
       - name: Run script to add page to Notion
