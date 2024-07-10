@@ -37,7 +37,6 @@ def checkMaxCnt(target):
 
 
 maxCnt = 1
-
 for i in range(n):
     for j in range(n - 1):
         if data[i][j] != data[i][j + 1]:
