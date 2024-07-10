@@ -7,7 +7,7 @@ config();
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.DATABASE_ID;
 const commitMessage = process.env.COMMIT_MESSAGE;
-const changedFilesContents = process.env.CHANGED_FILES_CONTENTS;
+let changedFilesContents = process.env.CHANGED_FILES_CONTENTS;
 
 // const commitMessage = "[Bronze3] https://www.acmicpc.net/problem/2178";
 // const changedFilesContents = "const a=b;"
@@ -41,7 +41,7 @@ async function addItem(databaseId: string) {
     if (!changedFilesContents){
         console.log('파일 내용을 읽을 수 없습니다!');
         console.log(changedFilesContents);
-        return;
+        changedFilesContents = commitMessage;
     }
     let info: Info = extractInfo(commitMessage)
 
