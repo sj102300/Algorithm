@@ -4,14 +4,6 @@ import copy
 n = int(sys.stdin.readline().rstrip())
 data = [" ".join(sys.stdin.readline().rstrip()).split() for _ in range(n)]
 
-
-# 현재 상황에서 먹을 수 있는 최대개수 알기
-# 안바꿨을때가 최대 인 경우
-# FFF
-# CCC
-# FCF
-# 바꾼 방향의 수직 줄의 사탕을 먹음, 가로로 바꾸면 세로줄을 먹어d
-# ㄴㄴ 아님 세로방향 바꾸고 세로줄 먹을수도 이거 체크하는걸 그냥 함수로 만드는게 나을듯ddsdf
 # [실버2] 3085.사탕게임 https://www.acmicpc.net/problem/3085
 
 def checkMaxCnt(target):
