@@ -22,7 +22,7 @@ function extractInfo(text: string) {
     let match = text.match(/\[(.*?)\]/); // 정규 표현식, []안의 문자열 뽑아냄
     let problem = text.split(' ');
     let result: Info = {
-        tier: match ? getTier(match[1]) : { name: '오류', icon: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_X.svg' },
+        tier: match ? getTier(match[1]): { name: '오류', icon: { type: 'external', external: { url: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_X.svg' } } },
         problemTitle: problem[1],
         problemUrl: problem[2] || 'https://www.acmicpc.net/'
     }
@@ -53,16 +53,12 @@ async function addItem(databaseId: string) {
     if (info) {
         console.log(info);
 
+
         const newPage = await notion.pages.create({
             parent: {
                 database_id: databaseId,
             },
-            icon: {
-                type: "external",
-                external: {
-                    url: info.tier?.icon,
-                },
-            },
+            icon: info.tier.icon,
             properties: {
                 "문제": {
                     type: "title",
