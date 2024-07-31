@@ -1,4 +1,5 @@
 
+type EmojiRequest = '1️⃣' | '2️⃣' | '3️⃣' | '4️⃣' | '5️⃣'
 
 export interface Tier {
     name: string;
@@ -9,7 +10,7 @@ export interface Tier {
         }
     } | {
         type: 'emoji',
-        emoji: string// Assuming EmojiRequest is a type that can be a string
+        emoji: EmojiRequest;
     }
 }
 
@@ -20,13 +21,13 @@ export function getTier(tier: string): Tier {
         case 'Lv1':
             return { name: 'Lv1', icon: { type: 'emoji', emoji: "1️⃣" } };
         case 'Lv2':
-            return { name: 'Lv2', icon: { type: 'emoji', emoji: "2️⃣" } };
+            return { name: 'Lv2', icon: { type: 'emoji', emoji: '2️⃣' } };
         case 'Lv3':
-            return { name: 'Lv3', icon: { type: 'emoji', emoji: "3️⃣" } };
+            return { name: 'Lv3', icon: { type: 'emoji', emoji: '3️⃣' }};
         case 'Lv4':
-            return { name: 'Lv4', icon: { type: 'emoji', emoji: "4️⃣" } };
+            return { name: 'Lv4', icon: { type: 'emoji', emoji: '4️⃣' } };
         case 'Lv5':
-            return { name: 'Lv5', icon: { type: 'emoji', emoji: "5️⃣" } };
+            return { name: 'Lv5', icon: { type: 'emoji', emoji: '5️⃣' } };
 
         case '브론즈5':
         case 'Bronze5':

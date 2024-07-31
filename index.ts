@@ -53,7 +53,6 @@ async function addItem(databaseId: string) {
     if (info) {
         console.log(info);
 
-
         const newPage = await notion.pages.create({
             parent: {
                 database_id: databaseId,
