@@ -6,37 +6,20 @@ const require = createRequire(import.meta.url);
 const fs = require('fs');
 let input = fs.readFileSync('dev/stdin', 'utf-8').trim().split('\n');
 
-// console.log(input);
 let [n, k] = input[0].split(' ');
-const coins = input.slice(1).map((e)=>+e);
+const coins = [...new Set(input.slice(1).map((e) => +e).filter((v)=>v<=k))]; //동전가치가 k보다 작은애들만 남기고, set으로 중복제거
 
-function recur(value, coins, index){
-    if (value < coins[index]){
-        return -1;
-    }
+function solution(k, coins) {
 
-    let maxCoinNum = Math.floor(value / coins[index]);
-    console.log(maxCoinNum);
-
-    let coinNumArray = [];
-
-    for(let i = maxCoinNum; i >= 0; i--){
-        // console.log(value - i * coins[index]);
-        let tmp = recur(value - i * coins[index], coins, index + 1);
-        if(tmp !== -1){
-            coinNumArray.push(tmp);
+    const dp = Array(10001).fill(Number.MAX_SAFE_INTEGER);
+    dp[0] = 0;
+    coins.forEach((v)=>{
+        for (let i=v; i<=k ;i++){
+            dp[i] = Math.min(dp[i], dp[i-v] + 1);
         }
-    }
+    })
 
-    return coinNumArray.length > 0 ? Math.min(coinNumArray): -1;
-
-}
-
-function solution(k, coins){
-    coins.sort((a,b)=> b - a);
-
-    console.log(recur(k, coins, 0));
-
+    console.log(dp[k] === Number.MAX_SAFE_INTEGER ? -1 : dp[k]);
 }
 
 solution(k, coins);
