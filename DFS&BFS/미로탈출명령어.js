@@ -11,10 +11,6 @@ function dfs(history, k, start, end, N, M){
             answer = history;
         return;
     }
-    if(history.length === k && start[0] === end[0] && start[1] === end[1]){
-        answer = history;
-        return;
-    }
     let distance = Math.abs(start[0] - end[0]) + Math.abs(start[1] - end[1]);
     if(distance > k - history.length){
         return;
