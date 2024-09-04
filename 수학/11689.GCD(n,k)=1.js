@@ -4,7 +4,8 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 const fs = require('fs');
-let input = BigInt(+(fs.readFileSync('dev/stdin', 'utf-8').trim()));
+const input = fs.readFileSync('/dev/stdin').toString().trim();
+const n = parseInt(input);
 
 //1~n까지의 범위에서 n과 서로소인 자연수의 개수를 찾음
 //서로소 = 최대공약수가 1인 것
@@ -37,4 +38,4 @@ function eulerPhi(n) {
 function solution(n) {
     return eulerPhi(n);
 }
-console.log(solution(input));
+console.log(solution(n));
