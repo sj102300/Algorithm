@@ -11,7 +11,7 @@ let data = input.map((e) => e.split(' ').map((v) => +v));
 
 function solution(n, data) {
 
-    let map = Array.from({ length: 101 }, () => Array.from({ length: 101 }, () => 0));
+    let map = Array.from({ length: 102 }, () => Array.from({ length: 102 }, () => 0));
 
     const dx = [0, 1, 0, -1];
     const dy = [1, 0, -1, 0];
