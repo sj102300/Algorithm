@@ -11,6 +11,7 @@ let data = input.map((e) => e.split(' ').map((v) => +v));
 
 function solution(n, data) {
 
+    //100까지 색종이가 붙으면 둘레를 계산하기 위해서는 0이 있는 패딩을 만들어줘야함.
     let map = Array.from({ length: 102 }, () => Array.from({ length: 102 }, () => 0));
 
     const dx = [0, 1, 0, -1];
