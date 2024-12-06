@@ -154,7 +154,7 @@ async function addItem(databaseId: string) {
                                         "content": changedFilesContents
                                     }
                                 }],
-                                "language": "javascript"
+                                "language": "python"
                             }
                         },
                         {
