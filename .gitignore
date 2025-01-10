@@ -6,3 +6,6 @@ dev
 .idea
 
 .DS_Store
+
+/cpp
+.vscode
