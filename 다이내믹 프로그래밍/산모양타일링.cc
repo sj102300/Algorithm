@@ -1,4 +1,4 @@
-//[Lv2] 산모양타일링 https://school.programmers.co.kr/learn/courses/30/lessons/258705
+//[Lv3] 산모양타일링 https://school.programmers.co.kr/learn/courses/30/lessons/258705
 
 #include <string>
 #include <vector>
