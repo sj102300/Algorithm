@@ -4,7 +4,7 @@
 #include <vector>
 #include <queue>
 #include <functional>
-
+ 
 using namespace std;
 
 int solution(vector<int> scoville, int K) {
