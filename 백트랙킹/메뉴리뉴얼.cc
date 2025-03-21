@@ -36,8 +36,6 @@ bool checkAnswer(vector<string> &orders){
         }
     } //비교할 문자열 만들기
     
-    // cout<<"str:"<<str<<endl;
-    
     int times =0;
     bool hasAlphabet;
     bool isAvailOrder;
@@ -65,7 +63,6 @@ bool checkAnswer(vector<string> &orders){
     
     if(times>=2){
         menusToOrdersNum.push_back({str, times});
-        // cout<<str<<": "<<times<<endl;
         return true;
     }
     
