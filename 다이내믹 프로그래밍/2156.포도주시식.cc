@@ -18,7 +18,6 @@ void getInput(){
 }
 
 int main(void){
-    freopen("/root/LigNex1/Algorithm/cpp/input.txt", "r", stdin);
 
     getInput();
 
